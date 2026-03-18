@@ -29,7 +29,7 @@
     </div>
 
     <script type="module">
-        // KITA PANGGIL DIRECT DARI INDEX.JS UNTUK ELAK ERROR
+        // Jalankan import dari path yang tepat (templates/index.js)
         import { KetickEngine } from './templates/index.js';
 
         window.runPreview = function() {
@@ -44,16 +44,26 @@
                 });
 
                 const frame = document.getElementById('previewFrame');
+                
+                // Menggunakan Blob URL untuk mengelakkan sekatan CORS browser pada iframe
                 const blob = new Blob([html], { type: 'text/html' });
-                frame.src = URL.createObjectURL(blob);
+                const blobUrl = URL.createObjectURL(blob);
+                
+                frame.src = blobUrl;
+
+                // Optional: Bersihkan memory selepas load
+                frame.onload = () => URL.revokeObjectURL(blobUrl);
+
             } catch (err) {
-                alert("Ralat: Pastikan ID betul dan fail index.js sudah di-commit!");
-                console.error(err);
+                console.error("Error KETICK:", err);
+                alert("Ralat! Pastikan fail templates/index.js anda ada .js pada setiap baris import.");
             }
         }
 
-        // Jalankan sekali masa mula
-        setTimeout(() => { runPreview(); }, 1000);
+        // Beri sedikit masa untuk modul dimuatkan sepenuhnya sebelum run pertama
+        setTimeout(() => { 
+            runPreview(); 
+        }, 1200);
     </script>
 </body>
 </html>
