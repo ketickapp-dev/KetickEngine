@@ -1,4 +1,4 @@
-// templates/01-multi-purpose/Layout.js
+// templates/21-multi-purpose/Layout.js
 import { Navbar } from '../shared/Navbar';
 import { Footer } from '../shared/Footer';
 
