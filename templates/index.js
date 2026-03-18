@@ -5,7 +5,7 @@ import { MultiPurposeTemplate } from './01-multi-purpose/Layout.js';
 import { TechSaaSTemplate } from './02-tech-saas/Layout.js';
 import { IndustrialTemplate } from './03-industrial-factory/Layout.js';
 import { PortfolioTemplate } from './04-portfolio-personal/Layout.js';
-import { ClinicTemplate } from './05-clinic-pro/Layout.js';
+import { ClinicProTemplate } from './05-clinic-pro/Layout.js';
 import { HotelTemplate } from './06-hotel-homestay/Layout.js';
 import { ProfessionalTemplate } from './07-professional-services/Layout.js';
 import { VeterinaryTemplate } from './08-veterinary/Layout.js';
@@ -42,7 +42,7 @@ export const KetickEngine = (templateId, userData) => {
         '02': TechSaaSTemplate,
         '03': IndustrialTemplate,
         '04': PortfolioTemplate,
-        '05': ClinicTemplate,
+        '05': ClinicProTemplate,
         '06': HotelTemplate,
         '07': ProfessionalTemplate,
         '08': VeterinaryTemplate,
