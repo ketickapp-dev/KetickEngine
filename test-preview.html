@@ -3,23 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KETICK Engine - Live Dashboard</title>
+    <title>KETICK Engine - Mega Previewer</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body class="bg-slate-950 text-white p-4 font-sans">
 
-    <div class="max-w-xl mx-auto text-center my-8">
-        <h1 class="text-2xl font-black tracking-tighter text-blue-500 uppercase italic">Ketick OS Previewer</h1>
-        <p class="text-slate-500 text-xs">Uji template anda secara real-time.</p>
+    <div class="max-w-xl mx-auto text-center my-6">
+        <h1 class="text-2xl font-black tracking-tighter text-blue-500 uppercase italic">Ketick OS Mega Preview</h1>
+        <p class="text-slate-500 text-xs">Versi Stabil (Semua dalam Satu)</p>
     </div>
 
     <div class="max-w-md mx-auto bg-slate-900 border border-slate-800 p-6 rounded-[2rem] shadow-2xl mb-8">
         <div class="space-y-4">
-            <input type="text" id="templateId" placeholder="ID (01-21)" value="05" class="w-full bg-black border border-slate-700 p-4 rounded-2xl text-center text-blue-400 font-black text-xl outline-none">
-            <input type="text" id="bizName" placeholder="Nama Bisnes" value="Klinik Yakin Bahau" class="w-full bg-black border border-slate-700 p-4 rounded-2xl text-center outline-none">
-            <button onclick="runPreview()" class="w-full bg-blue-600 hover:bg-blue-500 py-4 rounded-2xl font-black uppercase italic tracking-widest transition-all">
-                Generate Live View
+            <select id="templateId" class="w-full bg-black border border-slate-700 p-4 rounded-2xl text-center text-blue-400 font-bold outline-none">
+                <option value="05">TEMPLATE 05: CLINIC PRO</option>
+                <option value="01">TEMPLATE 01: MULTI-PURPOSE</option>
+            </select>
+            <input type="text" id="bizName" value="Klinik Yakin Bahau" class="w-full bg-black border border-slate-700 p-4 rounded-2xl text-center outline-none">
+            <button onclick="runMegaPreview()" class="w-full bg-blue-600 hover:bg-blue-500 py-4 rounded-2xl font-black uppercase italic tracking-widest transition-all">
+                GENERATE LIVE VIEW
             </button>
         </div>
     </div>
@@ -28,43 +30,70 @@
         <iframe id="previewFrame" class="w-full h-full border-none bg-white"></iframe>
     </div>
 
-    <script type="module">
-        // Teknik unik untuk elak Cache GitHub
-        const version = Date.now();
-        import { KetickEngine } from './templates/index.js?v=' + version;
+    <script>
+        // === INTERNAL ENGINE (Tiada Import Luar) ===
+        
+        const Navbar = (name) => `
+            <nav style="background:#0ea5e9; color:white; padding:15px; display:flex; justify-content:space-between; font-family:sans-serif;">
+                <strong>${name}</strong>
+                <span>Menu</span>
+            </nav>`;
 
-        window.runPreview = function() {
+        const Footer = (name) => `
+            <footer style="background:#1a1a1a; color:#888; padding:30px; text-align:center; font-family:sans-serif; font-size:12px;">
+                &copy; 2026 ${name}. Dijana oleh KETICK Engine.
+            </footer>`;
+
+        const ClinicProTemplate = (data) => `
+            <html>
+            <head><script src="https://cdn.tailwindcss.com"></script></head>
+            <body>
+                ${Navbar(data.name)}
+                <div class="py-20 px-6 text-center bg-slate-50">
+                    <h1 class="text-4xl font-black text-slate-900">${data.name}</h1>
+                    <p class="text-blue-600 font-bold mt-2">Klinik Kesihatan Pilihan Anda</p>
+                    <p class="mt-4 text-slate-600 italic text-sm">${data.location}</p>
+                    <div class="mt-10">
+                        <a href="#" class="bg-blue-600 text-white px-10 py-4 rounded-full font-bold shadow-lg">TEMPAH SLOT</a>
+                    </div>
+                </div>
+                <div class="p-6 grid grid-cols-2 gap-4 bg-white">
+                    <div class="p-4 border rounded-xl text-center"><strong>Rawatan Am</strong></div>
+                    <div class="p-4 border rounded-xl text-center"><strong>Kanak-kanak</strong></div>
+                </div>
+                ${Footer(data.name)}
+            </body>
+            </html>`;
+
+        const MultiPurposeTemplate = (data) => `
+            <html>
+            <head><script src="https://cdn.tailwindcss.com"></script></head>
+            <body class="bg-black text-white flex items-center justify-center h-screen">
+                <div class="text-center">
+                    <h1 class="text-5xl font-black italic">${data.name}</h1>
+                    <p class="mt-4 text-slate-400">Coming Soon at ${data.location}</p>
+                </div>
+            </body>
+            </html>`;
+
+        // === PREVIEW LOGIC ===
+
+        window.runMegaPreview = function() {
             const id = document.getElementById('templateId').value;
             const name = document.getElementById('bizName').value;
+            const data = { name: name, location: "Bahau, Negeri Sembilan" };
             
-            console.log("Menjana untuk ID:", id);
+            let html = "";
+            if(id === "05") html = ClinicProTemplate(data);
+            else html = MultiPurposeTemplate(data);
 
-            try {
-                const html = KetickEngine(id, { 
-                    name: name,
-                    location: "Bahau, Negeri Sembilan",
-                    contact: "60123456789"
-                });
-
-                const frame = document.getElementById('previewFrame');
-                const blob = new Blob([html], { type: 'text/html' });
-                const blobUrl = URL.createObjectURL(blob);
-                
-                frame.src = blobUrl;
-
-                frame.onload = () => {
-                    URL.revokeObjectURL(blobUrl);
-                    console.log("Berjaya dipaparkan.");
-                };
-
-            } catch (err) {
-                console.error("Ralat Engine:", err);
-                alert("RALAT: " + err.message + "\n\nSila pastikan folder templates/ wujud dan path .js betul.");
-            }
+            const frame = document.getElementById('previewFrame');
+            const blob = new Blob([html], { type: 'text/html' });
+            frame.src = URL.createObjectURL(blob);
         }
 
-        // Auto-run pada permulaan
-        setTimeout(() => { runPreview(); }, 1500);
+        // Jalankan terus masa buka
+        setTimeout(runMegaPreview, 500);
     </script>
 </body>
 </html>
