@@ -3,21 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KETICK Engine - Mega Previewer</title>
+    <title>KETICK Mega Preview</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-slate-950 text-white p-4 font-sans">
 
     <div class="max-w-xl mx-auto text-center my-6">
-        <h1 class="text-2xl font-black tracking-tighter text-blue-500 uppercase italic">Ketick OS Mega Preview</h1>
-        <p class="text-slate-500 text-xs">Versi Stabil (Semua dalam Satu)</p>
+        <h1 class="text-2xl font-black text-blue-500 italic uppercase">Ketick Mega Preview</h1>
     </div>
 
     <div class="max-w-md mx-auto bg-slate-900 border border-slate-800 p-6 rounded-[2rem] shadow-2xl mb-8">
         <div class="space-y-4">
-            <select id="templateId" class="w-full bg-black border border-slate-700 p-4 rounded-2xl text-center text-blue-400 font-bold outline-none">
-                <option value="05">TEMPLATE 05: CLINIC PRO</option>
-                <option value="01">TEMPLATE 01: MULTI-PURPOSE</option>
+            <select id="templateId" class="w-full bg-black border border-slate-700 p-4 rounded-2xl text-blue-400 font-bold outline-none text-center">
+                <option value="05">KLINIK PRO (ID 05)</option>
+                <option value="01">MULTI-PURPOSE (ID 01)</option>
             </select>
             <input type="text" id="bizName" value="Klinik Yakin Bahau" class="w-full bg-black border border-slate-700 p-4 rounded-2xl text-center outline-none">
             <button onclick="runMegaPreview()" class="w-full bg-blue-600 hover:bg-blue-500 py-4 rounded-2xl font-black uppercase italic tracking-widest transition-all">
@@ -27,72 +26,51 @@
     </div>
 
     <div class="max-w-[360px] mx-auto border-[12px] border-slate-900 rounded-[3rem] shadow-2xl bg-white aspect-[9/19] overflow-hidden relative">
-        <iframe id="previewFrame" class="w-full h-full border-none bg-white"></iframe>
+        <iframe id="previewFrame" class="w-full h-full border-none"></iframe>
     </div>
 
     <script>
-        // === INTERNAL ENGINE (Tiada Import Luar) ===
-        
-        const Navbar = (name) => `
-            <nav style="background:#0ea5e9; color:white; padding:15px; display:flex; justify-content:space-between; font-family:sans-serif;">
-                <strong>${name}</strong>
-                <span>Menu</span>
-            </nav>`;
-
-        const Footer = (name) => `
-            <footer style="background:#1a1a1a; color:#888; padding:30px; text-align:center; font-family:sans-serif; font-size:12px;">
-                &copy; 2026 ${name}. Dijana oleh KETICK Engine.
-            </footer>`;
-
-        const ClinicProTemplate = (data) => `
-            <html>
-            <head><script src="https://cdn.tailwindcss.com"></script></head>
-            <body>
-                ${Navbar(data.name)}
-                <div class="py-20 px-6 text-center bg-slate-50">
-                    <h1 class="text-4xl font-black text-slate-900">${data.name}</h1>
-                    <p class="text-blue-600 font-bold mt-2">Klinik Kesihatan Pilihan Anda</p>
-                    <p class="mt-4 text-slate-600 italic text-sm">${data.location}</p>
-                    <div class="mt-10">
-                        <a href="#" class="bg-blue-600 text-white px-10 py-4 rounded-full font-bold shadow-lg">TEMPAH SLOT</a>
-                    </div>
-                </div>
-                <div class="p-6 grid grid-cols-2 gap-4 bg-white">
-                    <div class="p-4 border rounded-xl text-center"><strong>Rawatan Am</strong></div>
-                    <div class="p-4 border rounded-xl text-center"><strong>Kanak-kanak</strong></div>
-                </div>
-                ${Footer(data.name)}
-            </body>
-            </html>`;
-
-        const MultiPurposeTemplate = (data) => `
-            <html>
-            <head><script src="https://cdn.tailwindcss.com"></script></head>
-            <body class="bg-black text-white flex items-center justify-center h-screen">
-                <div class="text-center">
-                    <h1 class="text-5xl font-black italic">${data.name}</h1>
-                    <p class="mt-4 text-slate-400">Coming Soon at ${data.location}</p>
-                </div>
-            </body>
-            </html>`;
-
-        // === PREVIEW LOGIC ===
-
-        window.runMegaPreview = function() {
+        function runMegaPreview() {
             const id = document.getElementById('templateId').value;
             const name = document.getElementById('bizName').value;
-            const data = { name: name, location: "Bahau, Negeri Sembilan" };
-            
-            let html = "";
-            if(id === "05") html = ClinicProTemplate(data);
-            else html = MultiPurposeTemplate(data);
+            const loc = "Bahau, Negeri Sembilan";
+
+            let content = "";
+
+            if (id === "05") {
+                content = `
+                    <html>
+                    <body style="margin:0; font-family:sans-serif; background:#f8fafc;">
+                        <div style="background:#0ea5e9; color:white; padding:20px; text-align:center; font-weight:bold;">${name}</div>
+                        <div style="padding:40px 20px; text-align:center;">
+                            <h1 style="color:#0f172a; margin:0;">${name}</h1>
+                            <p style="color:#0ea5e9; font-weight:bold;">Klinik Kesihatan Pilihan Anda</p>
+                            <p style="color:#64748b; font-size:14px;">${loc}</p>
+                            <button style="margin-top:20px; background:#2563eb; color:white; border:none; padding:15px 30px; border-radius:50px; font-weight:bold;">TEMPAH SLOT</button>
+                        </div>
+                        <div style="padding:20px; display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+                            <div style="background:white; padding:15px; border:1px solid #e2e8f0; border-radius:15px; text-align:center;">Rawatan Am</div>
+                            <div style="background:white; padding:15px; border:1px solid #e2e8f0; border-radius:15px; text-align:center;">Kanak-kanak</div>
+                        </div>
+                    </body>
+                    </html>`;
+            } else {
+                content = `
+                    <html>
+                    <body style="margin:0; background:black; color:white; display:flex; align-items:center; justify-content:center; height:100vh; font-family:sans-serif; text-align:center;">
+                        <div>
+                            <h1 style="font-size:40px; font-style:italic;">${name}</h1>
+                            <p style="color:#94a3b8;">Akan Datang di ${loc}</p>
+                        </div>
+                    </body>
+                    </html>`;
+            }
 
             const frame = document.getElementById('previewFrame');
-            const blob = new Blob([html], { type: 'text/html' });
+            const blob = new Blob([content], { type: 'text/html' });
             frame.src = URL.createObjectURL(blob);
         }
 
-        // Jalankan terus masa buka
         setTimeout(runMegaPreview, 500);
     </script>
 </body>
