@@ -1,3 +1,5 @@
+alert("KETICK Engine Sedang Bermula!");
+
 // templates/index.js - Master Engine Selector for KETICK OS
 
 // 1. Import Semua Template Utama (DENGAN .js EXTENSION)
