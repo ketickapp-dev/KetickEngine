@@ -1,34 +1,32 @@
 // templates/index.js - Master Engine Selector for KETICK OS
 
-// 1. Import Semua Template Utama
-import { MultiPurposeTemplate } from './01-multi-purpose/Layout';
-import { TechSaaSTemplate } from './02-tech-saas/Layout';
-import { IndustrialTemplate } from './03-industrial-factory/Layout';
-import { PortfolioTemplate } from './04-portfolio-personal/Layout';
-import { ClinicTemplate } from './05-clinic-pro/Layout';
-import { HotelTemplate } from './06-hotel-homestay/Layout';
-import { ProfessionalTemplate } from './07-professional-services/Layout';
-import { VeterinaryTemplate } from './08-veterinary/Layout';
-import { RestaurantTemplate } from './09-restaurant-cafe/Layout';
-import { CleaningTemplate } from './10-cleaning-services/Layout';
-import { BeautySpaTemplate } from './11-beauty-spa/Layout';
-import { FitnessGymTemplate } from './12-fitness-gym/Layout';
-import { BoutiqueTemplate } from './13-fashion-boutique/Layout';
-import { GadgetTemplate } from './14-gadget-store/Layout';
-import { WeddingTemplate } from './15-wedding-event/Layout';
-import { SchoolTemplate } from './17-tadika-school/Layout';
-import { CarRentalTemplate } from './18-car-rental/Layout';
-import { RealEstateTemplate } from './19-real-estate/Layout';
-import { NGOTemplate } from './20-ngo-charity/Layout';
-import { CourseTemplate } from './21-course-landing/Layout';
+// 1. Import Semua Template Utama (DENGAN .js EXTENSION)
+import { MultiPurposeTemplate } from './01-multi-purpose/Layout.js';
+import { TechSaaSTemplate } from './02-tech-saas/Layout.js';
+import { IndustrialTemplate } from './03-industrial-factory/Layout.js';
+import { PortfolioTemplate } from './04-portfolio-personal/Layout.js';
+import { ClinicTemplate } from './05-clinic-pro/Layout.js';
+import { HotelTemplate } from './06-hotel-homestay/Layout.js';
+import { ProfessionalTemplate } from './07-professional-services/Layout.js';
+import { VeterinaryTemplate } from './08-veterinary/Layout.js';
+import { RestaurantTemplate } from './09-restaurant-cafe/Layout.js';
+import { CleaningTemplate } from './10-cleaning-services/Layout.js';
+import { BeautySpaTemplate } from './11-beauty-spa/Layout.js';
+import { FitnessGymTemplate } from './12-fitness-gym/Layout.js';
+import { BoutiqueTemplate } from './13-fashion-boutique/Layout.js';
+import { GadgetTemplate } from './14-gadget-store/Layout.js';
+import { WeddingTemplate } from './15-wedding-event/Layout.js';
+import { SchoolTemplate } from './17-tadika-school/Layout.js';
+import { CarRentalTemplate } from './18-car-rental/Layout.js';
+import { RealEstateTemplate } from './19-real-estate/Layout.js';
+import { NGOTemplate } from './20-ngo-charity/Layout.js';
+import { CourseTemplate } from './21-course-landing/Layout.js';
 
 /**
  * KETICK ENGINE SELECTOR
- * Fungsi ini membolehkan user pilih template mengikut ID
  */
 export const KetickEngine = (templateId, userData) => {
     
-    // Default Data Sekiranya Kosong (Fallback)
     const data = {
         name: userData.name || "Perniagaan Saya",
         location: userData.location || "Malaysia",
@@ -36,7 +34,6 @@ export const KetickEngine = (templateId, userData) => {
         ...userData
     };
 
-    // Logika Pemilihan Template Secara Dinamik
     switch (templateId) {
         case '01': return MultiPurposeTemplate(data);
         case '02': return TechSaaSTemplate(data);
@@ -58,8 +55,6 @@ export const KetickEngine = (templateId, userData) => {
         case '19': return RealEstateTemplate(data);
         case '20': return NGOTemplate(data);
         case '21': return CourseTemplate(data);
-        
-        // Jika ID salah, guna Multi-Purpose sebagai backup
         default: return MultiPurposeTemplate(data);
     }
 };
