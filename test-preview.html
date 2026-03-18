@@ -3,39 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KETICK Engine - Mega Previewer v2.0</title>
+    <title>KETICK Engine - Mega Previewer Fix</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="bg-slate-950 text-white p-4 font-sans">
 
     <div class="max-w-xl mx-auto text-center my-6">
         <h1 class="text-2xl font-black tracking-tighter text-blue-500 uppercase italic">Ketick OS Mega Preview</h1>
-        <p class="text-slate-500 text-[10px] uppercase tracking-widest mt-1">SaaS Engine by AzlanMymo Lab</p>
     </div>
 
     <div class="max-w-md mx-auto bg-slate-900 border border-slate-800 p-6 rounded-[2.5rem] shadow-2xl mb-8">
         <div class="space-y-4">
-            <div class="relative">
-                <select id="templateId" class="w-full bg-black border border-slate-700 p-4 rounded-2xl text-blue-400 font-black outline-none appearance-none text-center text-lg shadow-inner">
-                    <option value="05">ID 05: CLINIC PRO</option>
-                    <option value="01">ID 01: MODERN BIZ</option>
-                </select>
-                <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-600">
-                    <i class="fa-solid fa-chevron-down"></i>
-                </div>
-            </div>
-            
-            <input type="text" id="bizName" value="Klinik Yakin Bahau" placeholder="Nama Bisnes" 
-                class="w-full bg-black border border-slate-700 p-4 rounded-2xl text-center font-semibold outline-none focus:border-blue-500 transition-all shadow-inner">
-            
-            <button onclick="runMegaPreview()" class="w-full bg-gradient-to-r from-blue-700 to-blue-500 hover:from-blue-600 hover:to-blue-400 py-4 rounded-2xl font-black uppercase italic tracking-widest shadow-lg shadow-blue-900/20 active:scale-95 transition-all">
-                Generate Live View
+            <select id="templateId" class="w-full bg-black border border-slate-700 p-4 rounded-2xl text-blue-400 font-black outline-none text-center">
+                <option value="05">ID 05: CLINIC PRO</option>
+                <option value="01">ID 01: MODERN BIZ</option>
+            </select>
+            <input type="text" id="bizName" value="Klinik Yakin Bahau" class="w-full bg-black border border-slate-700 p-4 rounded-2xl text-center outline-none">
+            <button onclick="runMegaPreview()" class="w-full bg-blue-600 hover:bg-blue-500 py-4 rounded-2xl font-black uppercase italic tracking-widest transition-all">
+                GENERATE LIVE VIEW
             </button>
         </div>
     </div>
 
-    <div class="max-w-[360px] mx-auto border-[12px] border-slate-900 rounded-[3.5rem] shadow-[0_0_50px_rgba(0,0,0,0.5)] bg-white aspect-[9/19] overflow-hidden relative ring-4 ring-slate-800/50">
+    <div class="max-w-[360px] mx-auto border-[12px] border-slate-900 rounded-[3.5rem] shadow-2xl bg-white aspect-[9/19] overflow-hidden relative">
         <iframe id="previewFrame" class="w-full h-full border-none bg-slate-50"></iframe>
     </div>
 
@@ -44,86 +35,66 @@
             const id = document.getElementById('templateId').value;
             const name = document.getElementById('bizName').value;
             const loc = "Bahau, Negeri Sembilan";
-            const contact = "60123456789";
 
             let content = "";
 
             if (id === "05") {
+                // Pastikan tiada simbol ` yang bertindan di sini
                 content = `
-                    <html>
-                    <head>
-                        <script src="https://cdn.tailwindcss.com"></script>
-                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-                        <style>@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap'); body { font-family: 'Plus Jakarta Sans', sans-serif; }</style>
-                    </head>
-                    <body class="bg-slate-50 text-slate-900 pb-20">
-                        <nav class="bg-white/80 backdrop-blur-md sticky top-0 z-50 p-4 border-b flex justify-between items-center">
-                            <div class="text-blue-600 font-extrabold text-xl italic tracking-tighter uppercase leading-none">${name}</div>
-                            <div class="w-10 h-10 bg-slate-100 rounded-xl flex items-center justify-center text-slate-500"><i class="fa-solid fa-bars-staggered"></i></div>
-                        </nav>
+                <html>
+                <head>
+                    <script src="https://cdn.tailwindcss.com"><\/script>
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+                </head>
+                <body class="bg-slate-50 text-slate-900 m-0 p-0 font-sans">
+                    <nav class="bg-white p-4 border-b flex justify-between items-center shadow-sm">
+                        <div class="text-blue-600 font-extrabold text-lg uppercase italic">${name}</div>
+                        <i class="fa-solid fa-bars text-slate-400"></i>
+                    </nav>
 
-                        <section class="py-10 px-6 text-center">
-                            <span class="bg-blue-100 text-blue-700 text-[10px] font-extrabold px-3 py-1.5 rounded-full uppercase tracking-[0.2em]">Medical Service</span>
-                            <h1 class="text-3xl font-extrabold mt-4 leading-tight tracking-tight">${name}</h1>
-                            <p class="text-slate-500 text-sm mt-3 leading-relaxed">Penjagaan Kesihatan <span class="text-blue-600 font-semibold">Profesional & Mesra</span> untuk komuniti di ${loc}.</p>
-                            
-                            <div class="mt-8">
-                                <a href="https://wa.me/${contact}" class="inline-flex items-center justify-center w-full bg-blue-600 text-white py-4 rounded-2xl font-bold shadow-xl shadow-blue-200 hover:bg-blue-700 active:scale-95 transition-all">
-                                    <i class="fa-brands fa-whatsapp text-xl mr-2"></i> TEMPAH SLOT SEKARANG
-                                </a>
-                                <div class="flex items-center justify-center mt-4 gap-4">
-                                    <div class="flex items-center gap-1.5 text-[10px] font-bold text-emerald-500 uppercase">
-                                        <div class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div> Dibuka Sekarang
-                                    </div>
-                                    <div class="w-[1px] h-3 bg-slate-200"></div>
-                                    <div class="text-[10px] font-bold text-slate-400 uppercase">3 Pesakit Menunggu</div>
-                                </div>
-                            </div>
-                        </section>
+                    <div class="py-10 px-6 text-center">
+                        <span class="bg-blue-100 text-blue-700 text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest">Medical Service</span>
+                        <h1 class="text-3xl font-extrabold mt-4 text-slate-900">${name}</h1>
+                        <p class="text-slate-500 text-xs mt-3 leading-relaxed font-medium">Penjagaan Kesihatan Profesional di <span class="text-blue-600">${loc}</span></p>
+                        
+                        <div class="mt-8">
+                            <a href="#" class="block bg-blue-600 text-white py-4 rounded-2xl font-bold shadow-lg shadow-blue-200">
+                                <i class="fa-brands fa-whatsapp mr-2"></i> TEMPAH SLOT
+                            </a>
+                        </div>
+                    </div>
 
-                        <section class="px-6 grid grid-cols-2 gap-4">
-                            <div class="bg-white p-5 rounded-[2rem] border border-slate-100 shadow-sm">
-                                <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mb-3"><i class="fa-solid fa-stethoscope"></i></div>
-                                <h3 class="text-xs font-bold text-slate-800">Rawatan Am</h3>
-                                <p class="text-[10px] text-slate-400 mt-1">Pemeriksaan Kesihatan</p>
-                            </div>
-                            <div class="bg-white p-5 rounded-[2rem] border border-slate-100 shadow-sm">
-                                <div class="w-10 h-10 bg-rose-50 text-rose-600 rounded-xl flex items-center justify-center mb-3"><i class="fa-solid fa-heart-pulse"></i></div>
-                                <h3 class="text-xs font-bold text-slate-800">Kanak-kanak</h3>
-                                <p class="text-[10px] text-slate-400 mt-1">Vaksin & Rawatan</p>
-                            </div>
-                        </section>
+                    <div class="px-6 grid grid-cols-2 gap-4">
+                        <div class="bg-white p-4 rounded-3xl border border-slate-100 shadow-sm text-center">
+                            <i class="fa-solid fa-stethoscope text-blue-600 mb-2"></i>
+                            <div class="text-[10px] font-bold">Rawatan Am</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-3xl border border-slate-100 shadow-sm text-center">
+                            <i class="fa-solid fa-heart-pulse text-rose-500 mb-2"></i>
+                            <div class="text-[10px] font-bold">Kesihatan</div>
+                        </div>
+                    </div>
 
-                        <section class="mt-8 px-6">
-                            <div class="bg-slate-900 rounded-[2rem] p-6 text-white overflow-hidden relative">
-                                <div class="relative z-10">
-                                    <h3 class="text-sm font-bold opacity-60 uppercase tracking-widest mb-4">Waktu Operasi</h3>
-                                    <div class="space-y-3 text-xs">
-                                        <div class="flex justify-between"><span>Isnin - Jumaat</span><span class="font-bold">8:00 AM - 10:00 PM</span></div>
-                                        <div class="flex justify-between text-blue-400"><span>Sabtu - Ahad</span><span class="font-bold">9:00 AM - 5:00 PM</span></div>
-                                    </div>
-                                </div>
-                                <div class="absolute -right-4 -bottom-4 text-slate-800 text-7xl"><i class="fa-solid fa-clock"></i></div>
-                            </div>
-                        </section>
-
-                        <footer class="mt-12 py-8 text-center text-slate-400 text-[10px] uppercase tracking-[0.3em]">
-                            &copy; 2026 KETICK ENGINE • BY AZLANMYMO
-                        </footer>
-                    </body>
-                    </html>`;
+                    <div class="m-6 p-5 bg-slate-900 rounded-[2rem] text-white">
+                        <div class="text-[10px] opacity-50 uppercase font-bold mb-3">Waktu Operasi</div>
+                        <div class="text-xs space-y-2">
+                            <div class="flex justify-between"><span>Isnin - Jumaat</span><span class="font-bold text-blue-400">8AM - 10PM</span></div>
+                            <div class="flex justify-between"><span>Sabtu - Ahad</span><span class="font-bold text-blue-400">9AM - 5PM</span></div>
+                        </div>
+                    </div>
+                </body>
+                </html>`;
             } else {
                 content = `
-                    <html>
-                    <head><script src="https://cdn.tailwindcss.com"></script></head>
-                    <body class="bg-black text-white flex items-center justify-center h-screen font-sans text-center">
-                        <div>
-                            <h1 class="text-4xl font-black italic tracking-tighter uppercase">${name}</h1>
-                            <p class="text-slate-500 text-xs mt-2 uppercase tracking-widest leading-loose">Modern Business Strategy<br>At ${loc}</p>
-                            <div class="mt-8 w-12 h-[2px] bg-blue-600 mx-auto"></div>
-                        </div>
-                    </body>
-                    </html>`;
+                <html>
+                <head><script src="https://cdn.tailwindcss.com"><\/script></head>
+                <body class="bg-black text-white h-screen flex items-center justify-center text-center p-10 font-sans">
+                    <div>
+                        <h1 class="text-4xl font-black italic uppercase">${name}</h1>
+                        <p class="text-slate-500 text-xs mt-4 tracking-widest uppercase">Coming Soon in ${loc}</p>
+                    </div>
+                </body>
+                </html>`;
             }
 
             const frame = document.getElementById('previewFrame');
@@ -131,8 +102,7 @@
             frame.src = URL.createObjectURL(blob);
         }
 
-        // Auto-load permulaan
-        setTimeout(runMegaPreview, 800);
+        setTimeout(runMegaPreview, 500);
     </script>
 </body>
 </html>
