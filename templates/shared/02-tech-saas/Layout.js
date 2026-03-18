@@ -1,7 +1,7 @@
 // templates/02-tech-saas/Layout.js
-import { Navbar } from '../shared/Navbar';
-import { Footer } from '../shared/Footer';
-import { getThemeStyles } from '../shared/ThemeManager';
+import { Navbar } from '../shared/Navbar.js';
+import { Footer } from '../shared/Footer.js';
+import { getThemeStyles } from '../shared/ThemeManager.js';
 
 export const TechSaaSTemplate = (data) => {
     return `
