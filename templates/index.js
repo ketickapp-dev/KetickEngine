@@ -38,8 +38,7 @@ export const KetickEngine = (templateId, userData) => {
 
     // Logika Pemilihan Template Secara Dinamik
     switch (templateId) {
-        case '01': return 
-ModernBiz(data);
+        case '01': return MultiPurposeTemplate(data);
         case '02': return TechSaaSTemplate(data);
         case '03': return IndustrialTemplate(data);
         case '04': return PortfolioTemplate(data);
@@ -58,9 +57,7 @@ ModernBiz(data);
         case '18': return CarRentalTemplate(data);
         case '19': return RealEstateTemplate(data);
         case '20': return NGOTemplate(data);
-        case '21': return MultiPurpose(data);
-        case '22': return CourseTemplate(data);
-
+        case '21': return CourseTemplate(data);
         
         // Jika ID salah, guna Multi-Purpose sebagai backup
         default: return MultiPurposeTemplate(data);
