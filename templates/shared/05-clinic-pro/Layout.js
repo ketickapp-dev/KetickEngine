@@ -1,6 +1,6 @@
 // templates/05-clinic-pro/Layout.js
-import { Navbar } from '../shared/Navbar';
-import { Footer } from '../shared/Footer';
+import { Navbar } from '../shared/Navbar.js';
+import { Footer } from '../shared/Footer.js';
 
 export const ClinicProTemplate = (data) => {
     return `
