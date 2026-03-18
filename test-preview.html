@@ -29,14 +29,15 @@
     </div>
 
     <script type="module">
-        // Menggunakan Date.now() untuk memaksa browser muat turun fail .js yang terkini
-        import { KetickEngine } from './templates/index.js?v=99' + Date.now();
+        // Teknik unik untuk elak Cache GitHub
+        const version = Date.now();
+        import { KetickEngine } from './templates/index.js?v=' + version;
 
         window.runPreview = function() {
             const id = document.getElementById('templateId').value;
             const name = document.getElementById('bizName').value;
             
-            console.log("Menjana preview untuk ID:", id);
+            console.log("Menjana untuk ID:", id);
 
             try {
                 const html = KetickEngine(id, { 
@@ -45,30 +46,25 @@
                     contact: "60123456789"
                 });
 
-                if (!html) {
-                    throw new Error("Engine gagal menghasilkan kod HTML.");
-                }
-
                 const frame = document.getElementById('previewFrame');
                 const blob = new Blob([html], { type: 'text/html' });
                 const blobUrl = URL.createObjectURL(blob);
                 
                 frame.src = blobUrl;
-                
+
                 frame.onload = () => {
                     URL.revokeObjectURL(blobUrl);
+                    console.log("Berjaya dipaparkan.");
                 };
 
             } catch (err) {
-                console.error("Ralat KETICK:", err);
-                alert("RALAT TEKNIKAL: " + err.message + "\n\nSila pastikan semua fail .js di GitHub sudah di-commit dengan betul.");
+                console.error("Ralat Engine:", err);
+                alert("RALAT: " + err.message + "\n\nSila pastikan folder templates/ wujud dan path .js betul.");
             }
         }
 
-        // Auto-run selepas 1.5 saat untuk memberi ruang kepada modul dimuatkan
-        setTimeout(() => { 
-            runPreview(); 
-        }, 1500);
+        // Auto-run pada permulaan
+        setTimeout(() => { runPreview(); }, 1500);
     </script>
 </body>
 </html>
