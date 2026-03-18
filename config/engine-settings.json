@@ -1,0 +1,32 @@
+{
+  "engine_name": "KETICK SaaS Engine",
+  "version": "1.0.0",
+  "default_theme": "corporate",
+  "templates": [
+    {
+      "id": "01",
+      "name": "Modern Biz",
+      "category": "corporate",
+      "path": "templates/01-modern-biz/Layout.js",
+      "features": ["SEO", "Contact Form"]
+    },
+    {
+      "id": "05",
+      "name": "Clinic Pro",
+      "category": "medical",
+      "path": "templates/05-clinic-pro/Layout.js",
+      "features": ["Queue Status", "WhatsApp Booking", "PWA"]
+    },
+    {
+      "id": "02",
+      "name": "Tech-SaaS",
+      "category": "saas",
+      "path": "templates/02-tech-saas/Layout.js",
+      "features": ["Dark Mode", "Feature Grid", "Pricing Table"]
+    }
+  ],
+  "global_styles": {
+    "border_radius": "12px",
+    "animation_speed": "0.3s"
+  }
+}
