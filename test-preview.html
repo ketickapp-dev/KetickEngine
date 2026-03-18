@@ -29,13 +29,15 @@
     </div>
 
     <script type="module">
-        // Jalankan import dari path yang tepat (templates/index.js)
+        // Import dari folder templates
         import { KetickEngine } from './templates/index.js';
 
         window.runPreview = function() {
             const id = document.getElementById('templateId').value;
             const name = document.getElementById('bizName').value;
             
+            console.log("Memulakan penjanaan untuk ID:", id);
+
             try {
                 const html = KetickEngine(id, { 
                     name: name,
@@ -43,27 +45,35 @@
                     contact: "60123456789"
                 });
 
+                if (!html) {
+                    throw new Error("Engine tidak memulangkan sebarang kod HTML.");
+                }
+
                 const frame = document.getElementById('previewFrame');
                 
-                // Menggunakan Blob URL untuk mengelakkan sekatan CORS browser pada iframe
+                // Menggunakan Blob URL untuk paparan lebih stabil
                 const blob = new Blob([html], { type: 'text/html' });
                 const blobUrl = URL.createObjectURL(blob);
                 
                 frame.src = blobUrl;
-
-                // Optional: Bersihkan memory selepas load
-                frame.onload = () => URL.revokeObjectURL(blobUrl);
+                
+                // Revoke URL selepas load untuk jimat memori
+                frame.onload = () => {
+                    URL.revokeObjectURL(blobUrl);
+                    console.log("Preview berjaya dipaparkan dalam iframe.");
+                };
 
             } catch (err) {
-                console.error("Error KETICK:", err);
-                alert("Ralat! Pastikan fail templates/index.js anda ada .js pada setiap baris import.");
+                console.error("Ralat KETICK:", err);
+                // Alert ini akan beritahu jika ada masalah path atau syntax
+                alert("RALAT TEKNIKAL: " + err.message + "\n\nPastikan fail .js anda wujud (ada .js di hujung import) dan sudah di-commit.");
             }
         }
 
-        // Beri sedikit masa untuk modul dimuatkan sepenuhnya sebelum run pertama
+        // Jalankan preview secara automatik selepas 1 saat
         setTimeout(() => { 
             runPreview(); 
-        }, 1200);
+        }, 1000);
     </script>
 </body>
 </html>
