@@ -1,6 +1,6 @@
 // templates/01-multi-purpose/Layout.js
-import { Navbar } from '../shared/Navbar';
-import { Footer } from '../shared/Footer';
+import { Navbar } from '../shared/Navbar.js';
+import { Footer } from '../shared/Footer.js';
 
 export const MultiPurposeTemplate = (data) => {
     return `
