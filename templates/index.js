@@ -1,8 +1,6 @@
-alert("KETICK Engine Sedang Bermula!");
-
 // templates/index.js - Master Engine Selector for KETICK OS
 
-// 1. Import Semua Template Utama (DENGAN .js EXTENSION)
+// 1. Import Semua Template Utama (WAJIB ADA .js)
 import { MultiPurposeTemplate } from './01-multi-purpose/Layout.js';
 import { TechSaaSTemplate } from './02-tech-saas/Layout.js';
 import { IndustrialTemplate } from './03-industrial-factory/Layout.js';
@@ -24,11 +22,13 @@ import { RealEstateTemplate } from './19-real-estate/Layout.js';
 import { NGOTemplate } from './20-ngo-charity/Layout.js';
 import { CourseTemplate } from './21-course-landing/Layout.js';
 
+console.log("🚀 KETICK Engine: Modules Loading...");
+
 /**
  * KETICK ENGINE SELECTOR
  */
 export const KetickEngine = (templateId, userData) => {
-    
+    // Default Data Sekiranya Kosong (Fallback)
     const data = {
         name: userData.name || "Perniagaan Saya",
         location: userData.location || "Malaysia",
@@ -36,29 +36,30 @@ export const KetickEngine = (templateId, userData) => {
         ...userData
     };
 
-    switch (templateId) {
-        case '01': return MultiPurposeTemplate(data);
-        case '02': return TechSaaSTemplate(data);
-        case '03': return IndustrialTemplate(data);
-        case '04': return PortfolioTemplate(data);
-        case '05': return ClinicTemplate(data);
-        case '06': return HotelTemplate(data);
-        case '07': return ProfessionalTemplate(data);
-        case '08': return VeterinaryTemplate(data);
-        case '09': return RestaurantTemplate(data);
-        case '10': return CleaningTemplate(data);
-        case '11': return BeautySpaTemplate(data);
-        case '12': return FitnessGymTemplate(data);
-        case '13': return BoutiqueTemplate(data);
-        case '14': return GadgetTemplate(data);
-        case '15': return WeddingTemplate(data);
-        case '17': return SchoolTemplate(data);
-        case '18': return CarRentalTemplate(data);
-        case '19': return RealEstateTemplate(data);
-        case '20': return NGOTemplate(data);
-        case '21': return CourseTemplate(data);
-        default: return MultiPurposeTemplate(data);
-    }
-};
+    // Logika Pemilihan Template
+    const templates = {
+        '01': MultiPurposeTemplate,
+        '02': TechSaaSTemplate,
+        '03': IndustrialTemplate,
+        '04': PortfolioTemplate,
+        '05': ClinicTemplate,
+        '06': HotelTemplate,
+        '07': ProfessionalTemplate,
+        '08': VeterinaryTemplate,
+        '09': RestaurantTemplate,
+        '10': CleaningTemplate,
+        '11': BeautySpaTemplate,
+        '12': FitnessGymTemplate,
+        '13': BoutiqueTemplate,
+        '14': GadgetTemplate,
+        '15': WeddingTemplate,
+        '17': SchoolTemplate,
+        '18': CarRentalTemplate,
+        '19': RealEstateTemplate,
+        '20': NGOTemplate,
+        '21': CourseTemplate
+    };
 
-console.log("🚀 KETICK Engine: 20 Templates Loaded Successfully!");
+    const selectedTemplate = templates[templateId] || MultiPurposeTemplate;
+    return selectedTemplate(data);
+};
