@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KETICK OS - Ultimate Engine v8.0</title>
+    <title>KETICK OS - Ultimate Engine v9.0</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -16,7 +16,7 @@
 
     <div class="max-w-xl mx-auto text-center my-6">
         <h1 class="text-3xl font-black tracking-tighter text-blue-500 uppercase italic">Ketick OS Ultimate</h1>
-        <p class="text-slate-500 text-[10px] mt-1 tracking-[0.4em] uppercase font-bold">The Complete SaaS Solution</p>
+        <p class="text-slate-500 text-[10px] mt-1 tracking-[0.4em] uppercase font-bold">20 Templates All-In-One SaaS</p>
     </div>
 
     <div class="max-w-md mx-auto bg-slate-900/50 border border-slate-800 p-6 rounded-[2.5rem] shadow-2xl mb-8 backdrop-blur-xl">
@@ -24,18 +24,28 @@
             
             <div class="grid grid-cols-1 gap-4">
                 <div>
-                    <label class="text-[9px] uppercase font-black text-slate-500 mb-2 block tracking-widest ml-2">Pilih Template (ID 01-21)</label>
-                    <select id="templateId" class="w-full bg-black border border-slate-800 p-4 rounded-2xl text-blue-400 font-bold outline-none appearance-none">
-                        <option value="05">ID 05: CLINIC PRO</option>
-                        <option value="09">ID 09: RESTAURANT</option>
-                        <option value="12">ID 12: FITNESS GYM</option>
+                    <label class="text-[9px] uppercase font-black text-slate-500 mb-2 block tracking-widest ml-2">Pilih Template Kategori</label>
+                    <select id="templateId" class="w-full bg-black border border-slate-800 p-4 rounded-2xl text-blue-400 font-bold outline-none appearance-none cursor-pointer">
                         <option value="01">ID 01: MULTI-PURPOSE</option>
                         <option value="02">ID 02: TECH SAAS</option>
                         <option value="03">ID 03: INDUSTRIAL</option>
                         <option value="04">ID 04: PORTFOLIO</option>
+                        <option value="05" selected>ID 05: CLINIC PRO</option>
+                        <option value="06">ID 06: HOTEL & STAY</option>
+                        <option value="07">ID 07: PROF. SERVICES</option>
+                        <option value="08">ID 08: VETERINARY</option>
+                        <option value="09">ID 09: RESTAURANT</option>
+                        <option value="10">ID 10: CLEANING</option>
                         <option value="11">ID 11: BEAUTY & SPA</option>
+                        <option value="12">ID 12: FITNESS GYM</option>
+                        <option value="13">ID 13: BOUTIQUE</option>
+                        <option value="14">ID 14: GADGET STORE</option>
+                        <option value="15">ID 15: WEDDING</option>
                         <option value="17">ID 17: SCHOOL</option>
+                        <option value="18">ID 18: CAR RENTAL</option>
                         <option value="19">ID 19: REAL ESTATE</option>
+                        <option value="20">ID 20: NGO CHARITY</option>
+                        <option value="21">ID 21: ONLINE COURSE</option>
                     </select>
                 </div>
                 <input type="text" id="bizName" value="Klinik Yakin Bahau" placeholder="Nama Bisnes" class="w-full bg-black border border-slate-800 p-4 rounded-2xl text-center font-bold outline-none focus:border-blue-500 transition-all">
@@ -69,7 +79,7 @@
     </div>
 
     <div class="max-w-[360px] mx-auto border-[12px] border-slate-900 rounded-[3.5rem] shadow-[0_40px_100px_rgba(0,0,0,0.8)] bg-white aspect-[9/19] overflow-hidden relative ring-4 ring-slate-800/20">
-        <iframe id="previewFrame" class="w-full h-full border-none"></iframe>
+        <iframe id="previewFrame" class="w-full h-full border-none bg-white"></iframe>
     </div>
 
     <script>
@@ -82,18 +92,28 @@
             const p1 = { n: document.getElementById('p1_name').value, p: document.getElementById('p1_price').value };
             const p2 = { n: document.getElementById('p2_name').value, p: document.getElementById('p2_price').value };
 
-            // Data Template
+            // Senarai Lengkap 20 Template
             const templates = {
                 "01": { icon: "fa-bolt", desc: "Penyelesaian Perniagaan Multi-Purpose.", bg: "bg-white", text: "text-slate-900" },
                 "02": { icon: "fa-microchip", desc: "Teknologi SaaS & Cloud masa hadapan.", bg: "bg-slate-900", text: "text-white" },
                 "03": { icon: "fa-industry", desc: "Pusat Pengeluaran & Kilang Perindustrian.", bg: "bg-zinc-100", text: "text-zinc-900" },
                 "04": { icon: "fa-palette", desc: "Portfolio Kreatif & Personal Branding.", bg: "bg-neutral-50", text: "text-neutral-900" },
                 "05": { icon: "fa-user-doctor", desc: "Penjagaan Kesihatan Klinik Profesional.", bg: "bg-sky-50", text: "text-sky-900" },
+                "06": { icon: "fa-bed", desc: "Hotel, Resort & Homestay Eksklusif.", bg: "bg-stone-50", text: "text-stone-900" },
+                "07": { icon: "fa-briefcase", desc: "Khidmat Nasihat & Professional Services.", bg: "bg-slate-50", text: "text-slate-900" },
+                "08": { icon: "fa-paw", desc: "Kesihatan & Rawatan Haiwan Kesayangan.", bg: "bg-pink-50", text: "text-pink-900" },
                 "09": { icon: "fa-utensils", desc: "Nikmati Hidangan Restoran & Kafe Terbaik.", bg: "bg-orange-50", text: "text-orange-900" },
-                "11": { icon: "fa-spa", desc: "Pusat Kecantikan & Penjagaan Diri.", bg: "bg-rose-50", text: "text-rose-900" },
+                "10": { icon: "fa-broom", desc: "Khidmat Pembersihan Kediaman & Pejabat.", bg: "bg-cyan-50", text: "text-cyan-900" },
+                "11": { icon: "fa-spa", desc: "Pusat Kecantikan, Spa & Penjagaan Diri.", bg: "bg-rose-50", text: "text-rose-900" },
                 "12": { icon: "fa-dumbbell", desc: "Gimnasium & Pusat Kecergasan Elit.", bg: "bg-zinc-950", text: "text-white" },
+                "13": { icon: "fa-shirt", desc: "Butik Fesyen & Pakaian Terkini.", bg: "bg-white", text: "text-black" },
+                "14": { icon: "fa-mobile-screen", desc: "Gajet & Peranti Elektronik Terbaharu.", bg: "bg-slate-100", text: "text-slate-900" },
+                "15": { icon: "fa-rings-wedding", desc: "Pengurusan Majlis & Perkahwinan Impian.", bg: "bg-pink-50", text: "text-pink-900" },
                 "17": { icon: "fa-graduation-cap", desc: "Pusat Pendidikan & Sekolah Cemerlang.", bg: "bg-blue-50", text: "text-blue-900" },
-                "19": { icon: "fa-house-chimney", desc: "Hartanah & Pengurusan Rumah Kediaman.", bg: "bg-emerald-50", text: "text-emerald-900" }
+                "18": { icon: "fa-car", desc: "Sewa Kereta & Logistik Pengangkutan.", bg: "bg-slate-50", text: "text-slate-900" },
+                "19": { icon: "fa-house-chimney", desc: "Hartanah & Pengurusan Rumah Kediaman.", bg: "bg-emerald-50", text: "text-emerald-900" },
+                "20": { icon: "fa-hand-holding-heart", desc: "Bantuan Kebajikan & Pertubuhan NGO.", bg: "bg-white", text: "text-slate-900" },
+                "21": { icon: "fa-book-open", desc: "Kursus Atas Talian & Latihan Kerjaya.", bg: "bg-indigo-50", text: "text-indigo-900" }
             };
 
             const config = templates[id] || templates["01"];
@@ -107,30 +127,30 @@
                 </head>
                 <body class="${config.bg} ${config.text} m-0 p-0 min-h-screen relative overflow-x-hidden">
                     
-                    <nav class="p-5 flex justify-between items-center bg-white/10 backdrop-blur-md sticky top-0 border-b border-black/5 z-10">
+                    <nav class="p-5 flex justify-between items-center bg-white/20 backdrop-blur-md sticky top-0 border-b border-black/5 z-10">
                         <span class="font-black italic uppercase tracking-tighter text-lg" style="color:${color}">${name}</span>
-                        <i class="fa-solid fa-bars-staggered opacity-50"></i>
+                        <div class="w-10 h-10 flex items-center justify-center opacity-40"><i class="fa-solid fa-bars-staggered"></i></div>
                     </nav>
 
                     <div class="p-8 text-center">
-                        <div class="w-20 h-20 rounded-[2.5rem] flex items-center justify-center mx-auto mb-8 text-3xl text-white shadow-2xl rotate-3" style="background:${color}">
+                        <div class="w-20 h-20 rounded-[2.5rem] flex items-center justify-center mx-auto mb-8 text-3xl text-white shadow-2xl rotate-3 transition-transform hover:rotate-0" style="background:${color}">
                             <i class="fa-solid ${config.icon}"></i>
                         </div>
                         <h1 class="text-3xl font-black uppercase tracking-tighter italic leading-none">${name}</h1>
                         <p class="mt-4 opacity-60 text-[11px] leading-relaxed px-4 font-medium">${config.desc}</p>
                         
                         <div class="mt-8 space-y-3">
-                            <div class="bg-white/50 backdrop-blur-sm p-5 rounded-[2rem] border border-black/5 flex justify-between items-center shadow-sm">
-                                <div class="text-left"><p class="text-[9px] opacity-50 font-bold uppercase">Service A</p><p class="font-black uppercase text-sm">${p1.n}</p></div>
+                            <div class="bg-white/60 backdrop-blur-sm p-5 rounded-[2rem] border border-black/5 flex justify-between items-center shadow-sm">
+                                <div class="text-left"><p class="text-[9px] opacity-50 font-bold uppercase tracking-widest">Standard</p><p class="font-black uppercase text-sm">${p1.n}</p></div>
                                 <div class="font-black text-lg" style="color:${color}">${p1.p}</div>
                             </div>
-                            <div class="bg-white/50 backdrop-blur-sm p-5 rounded-[2rem] border border-black/5 flex justify-between items-center shadow-sm">
-                                <div class="text-left"><p class="text-[9px] opacity-50 font-bold uppercase">Service B</p><p class="font-black uppercase text-sm">${p2.n}</p></div>
+                            <div class="bg-white/60 backdrop-blur-sm p-5 rounded-[2rem] border border-black/5 flex justify-between items-center shadow-sm">
+                                <div class="text-left"><p class="text-[9px] opacity-50 font-bold uppercase tracking-widest">Premium</p><p class="font-black uppercase text-sm">${p2.n}</p></div>
                                 <div class="font-black text-lg" style="color:${color}">${p2.p}</div>
                             </div>
                         </div>
 
-                        <button onclick="openBooking()" class="mt-10 w-full py-5 rounded-[2rem] font-black text-white shadow-2xl active:scale-95 transition-all text-[10px] tracking-widest uppercase" style="background:${color}">
+                        <button onclick="openBooking()" class="mt-10 w-full py-5 rounded-[2rem] font-black text-white shadow-2xl active:scale-95 transition-all text-[11px] tracking-widest uppercase" style="background:${color}">
                             TEMPAH SEKARANG
                         </button>
                     </div>
@@ -138,17 +158,18 @@
                     <div id="bookingSheet" class="fixed inset-0 bg-black/60 z-50 transition-opacity duration-300 opacity-0 pointer-events-none">
                         <div class="absolute bottom-0 left-0 right-0 bg-white rounded-t-[3rem] p-10 transform translate-y-full transition-transform duration-500 shadow-2xl">
                             <div class="w-12 h-1.5 bg-slate-200 rounded-full mx-auto mb-8"></div>
-                            <h2 class="text-xl font-black uppercase italic mb-6 text-slate-900">Maklumat Tempahan</h2>
-                            <div class="space-y-3 text-slate-900">
-                                <input type="text" placeholder="Nama Penuh" class="w-full bg-slate-100 p-4 rounded-2xl outline-none">
-                                <input type="tel" placeholder="No. WhatsApp" class="w-full bg-slate-100 p-4 rounded-2xl outline-none">
-                                <button onclick="closeBooking()" class="w-full py-4 rounded-2xl font-black text-white uppercase tracking-widest text-[10px] mt-4" style="background:${color}">HANTAR SEKARANG</button>
+                            <h2 class="text-xl font-black uppercase italic mb-6 text-slate-900 text-center" style="color:${color}">Slot Tempahan</h2>
+                            <div class="space-y-3">
+                                <input type="text" placeholder="Nama Anda" class="w-full bg-slate-100 p-5 rounded-2xl outline-none text-slate-900 font-bold border-none focus:ring-2 ring-slate-200">
+                                <input type="tel" placeholder="No. WhatsApp" class="w-full bg-slate-100 p-5 rounded-2xl outline-none text-slate-900 font-bold border-none focus:ring-2 ring-slate-200">
+                                <button onclick="closeBooking()" class="w-full py-5 rounded-2xl font-black text-white uppercase tracking-widest text-[10px] mt-4 shadow-lg" style="background:${color}">HANTAR TEMPAHAN</button>
+                                <button onclick="toggleBooking(false)" class="w-full py-2 text-slate-400 text-[10px] font-bold uppercase tracking-widest">Batal</button>
                             </div>
                         </div>
                     </div>
 
-                    <div style="position:fixed; bottom:20px; right:20px; z-index:40;">
-                        <a href="#" style="background:#25D366; width:60px; height:60px; border-radius:22px; display:flex; align-items:center; justify-content:center; color:white; font-size:28px; box-shadow:0 10px 25px rgba(37,211,102,0.3); text-decoration:none;">
+                    <div style="position:fixed; bottom:25px; right:25px; z-index:40;">
+                        <a href="#" style="background:#25D366; width:65px; height:65px; border-radius:24px; display:flex; align-items:center; justify-content:center; color:white; font-size:30px; box-shadow:0 15px 35px rgba(37,211,102,0.4); text-decoration:none;" class="active:scale-90 transition-all">
                             <i class="fa-brands fa-whatsapp"></i>
                         </a>
                     </div>
@@ -160,11 +181,16 @@
                             sheet.classList.add('opacity-100');
                             sheet.children[0].classList.remove('translate-y-full');
                         }
-                        function closeBooking() {
-                            alert("Tempahan berjaya dihantar ke ${name}!");
+                        function toggleBooking(show) {
                             const sheet = document.getElementById('bookingSheet');
-                            sheet.classList.add('opacity-0', 'pointer-events-none');
-                            sheet.children[0].classList.add('translate-y-full');
+                            if(!show) {
+                                sheet.classList.add('opacity-0', 'pointer-events-none');
+                                sheet.children[0].classList.add('translate-y-full');
+                            }
+                        }
+                        function closeBooking() {
+                            alert("Terima kasih! Pihak ${name} akan menghubungi anda melalui WhatsApp.");
+                            toggleBooking(false);
                         }
                     <\/script>
                 </body>
@@ -174,6 +200,8 @@
             const blob = new Blob([content], { type: 'text/html' });
             frame.src = URL.createObjectURL(blob);
         }
+
+        // Jalankan preview pertama kali
         setTimeout(runMegaPreview, 500);
     </script>
 </body>
