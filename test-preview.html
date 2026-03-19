@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KETICK Engine - Mega Previewer v3.0</title>
+    <title>KETICK Engine - Mega Previewer v4.0</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="bg-slate-950 text-white p-4 font-sans">
+<body class="bg-slate-950 text-white p-4 font-sans leading-tight">
 
     <div class="max-w-xl mx-auto text-center my-6">
-        <h1 class="text-2xl font-black tracking-tighter text-blue-500 uppercase italic leading-none">Ketick OS Mega Preview</h1>
-        <p class="text-slate-500 text-[10px] mt-1 tracking-[0.3em]">ALL-IN-ONE SaaS ENGINE</p>
+        <h1 class="text-2xl font-black tracking-tighter text-blue-500 uppercase italic">Ketick OS Mega Preview</h1>
+        <p class="text-slate-500 text-[10px] mt-1 tracking-[0.3em]">WHATSAPP INTEGRATED ENGINE</p>
     </div>
 
     <div class="max-w-md mx-auto bg-slate-900 border border-slate-800 p-6 rounded-[2.5rem] shadow-2xl mb-8">
@@ -22,86 +22,76 @@
                 <option value="03">ID 03: INDUSTRIAL</option>
                 <option value="04">ID 04: PORTFOLIO</option>
                 <option value="05">ID 05: CLINIC PRO</option>
-                <option value="06">ID 06: HOTEL & STAY</option>
-                <option value="07">ID 07: PROF. SERVICES</option>
-                <option value="08">ID 08: VETERINARY</option>
                 <option value="09">ID 09: RESTAURANT</option>
-                <option value="10">ID 10: CLEANING</option>
-                <option value="11">ID 11: BEAUTY & SPA</option>
                 <option value="12">ID 12: FITNESS GYM</option>
-                <option value="13">ID 13: BOUTIQUE</option>
-                <option value="14">ID 14: GADGET STORE</option>
-                <option value="15">ID 15: WEDDING</option>
                 <option value="17">ID 17: SCHOOL</option>
-                <option value="18">ID 18: CAR RENTAL</option>
-                <option value="19">ID 19: REAL ESTATE</option>
-                <option value="20">ID 20: NGO CHARITY</option>
-                <option value="21">ID 21: ONLINE COURSE</option>
-            </select>
+                </select>
             <input type="text" id="bizName" value="Bisnes Saya" class="w-full bg-black border border-slate-700 p-4 rounded-2xl text-center outline-none">
-            <button onclick="runMegaPreview()" class="w-full bg-blue-600 hover:bg-blue-500 py-4 rounded-2xl font-black uppercase italic tracking-widest transition-all shadow-lg shadow-blue-900/40">
+            <button onclick="runMegaPreview()" class="w-full bg-blue-600 hover:bg-blue-500 py-4 rounded-2xl font-black uppercase italic tracking-widest transition-all">
                 GENERATE LIVE VIEW
             </button>
         </div>
     </div>
 
     <div class="max-w-[360px] mx-auto border-[12px] border-slate-900 rounded-[3.5rem] shadow-2xl bg-white aspect-[9/19] overflow-hidden relative">
-        <iframe id="previewFrame" class="w-full h-full border-none bg-slate-50"></iframe>
+        <iframe id="previewFrame" class="w-full h-full border-none"></iframe>
     </div>
 
     <script>
         function runMegaPreview() {
             const id = document.getElementById('templateId').value;
             const name = document.getElementById('bizName').value;
-            const loc = "Malaysia";
+            const loc = "Negeri Sembilan, Malaysia";
 
-            // Helper function untuk kurangkan ralat backtick
-            const getLayout = (bg, text, accent, icon, desc) => `
+            // Enjin Layout dengan WhatsApp Bubble Terbina
+            const getLayout = (bg, text, accent, icon, desc, waColor = "#25D366") => `
                 <html>
-                <head><script src="https://cdn.tailwindcss.com"><\/script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></head>
-                <body class="${bg} ${text} font-sans m-0 min-h-screen">
-                    <nav class="p-5 flex justify-between items-center border-b border-black/5 bg-white/10 backdrop-blur-md sticky top-0">
-                        <span class="font-black italic uppercase tracking-tighter text-lg">${name}</span>
-                        <i class="fa-solid fa-bars"></i>
+                <head>
+                    <script src="https://cdn.tailwindcss.com"><\/script>
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+                </head>
+                <body class="${bg} ${text} font-sans m-0 p-0 min-h-screen relative">
+                    <nav class="p-5 flex justify-between items-center bg-white/5 backdrop-blur-sm sticky top-0 border-b border-black/5">
+                        <span class="font-black italic uppercase tracking-tighter">${name}</span>
+                        <i class="fa-solid fa-bars opacity-50"></i>
                     </nav>
-                    <div class="p-8 text-center">
-                        <div class="w-16 h-16 ${accent} rounded-3xl flex items-center justify-center mx-auto mb-6 text-2xl shadow-xl">
+
+                    <div class="p-10 text-center">
+                        <div class="w-20 h-20 ${accent} rounded-[2rem] flex items-center justify-center mx-auto mb-8 text-3xl shadow-2xl rotate-3">
                             <i class="fa-solid ${icon}"></i>
                         </div>
-                        <h1 class="text-3xl font-black leading-none uppercase italic">${name}</h1>
-                        <p class="mt-4 opacity-70 text-sm leading-relaxed px-4">${desc}</p>
-                        <div class="mt-10 space-y-4">
-                            <button class="w-full py-4 rounded-2xl font-black ${accent} shadow-xl active:scale-95 transition-all uppercase tracking-widest text-xs">TEMPAH SEKARANG</button>
-                            <p class="text-[10px] opacity-40 italic">Lokasi: ${loc}</p>
+                        <h1 class="text-4xl font-black uppercase tracking-tighter italic leading-none">${name}</h1>
+                        <p class="mt-6 opacity-60 text-sm leading-relaxed">${desc}</p>
+                        
+                        <div class="mt-12 space-y-4">
+                            <button class="w-full py-5 rounded-[2rem] font-black ${accent} shadow-2xl active:scale-95 transition-all text-xs tracking-widest">
+                                LIHAT KATALOG
+                            </button>
+                            <p class="text-[10px] opacity-40 uppercase tracking-widest font-bold">Lokasi: ${loc}</p>
+                        </div>
+                    </div>
+
+                    <div style="position:fixed; bottom:20px; right:20px; z-index:999;">
+                        <a href="#" style="background:${waColor}; width:60px; height:60px; border-radius:100%; display:flex; align-items:center; justify-content:center; color:white; font-size:30px; box-shadow:0 10px 25px rgba(37,211,102,0.3); text-decoration:none;">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+                        <div style="position:absolute; right:70px; bottom:10px; background:white; color:black; padding:8px 15px; border-radius:15px; font-size:10px; font-weight:bold; white-space:nowrap; box-shadow:0 5px 15px rgba(0,0,0,0.1);">
+                            Sembang dengan kami!
                         </div>
                     </div>
                 </body>
                 </html>`;
 
             let content = "";
-
             switch(id) {
-                case "01": content = getLayout("bg-white", "text-slate-900", "bg-black text-white", "fa-bolt", "Penyelesaian Perniagaan Multi-Purpose."); break;
-                case "02": content = getLayout("bg-slate-900", "text-white", "bg-blue-500 text-white", "fa-microchip", "Teknologi SaaS & Cloud masa hadapan."); break;
-                case "03": content = getLayout("bg-zinc-100", "text-zinc-900", "bg-orange-600 text-white", "fa-industry", "Pusat Pengeluaran & Kilang Perindustrian."); break;
-                case "04": content = getLayout("bg-neutral-50", "text-neutral-900", "bg-purple-600 text-white", "fa-palette", "Portfolio Kreatif & Personal Branding."); break;
-                case "05": content = getLayout("bg-sky-50", "text-sky-900", "bg-blue-600 text-white", "fa-user-doctor", "Penjagaan Kesihatan Klinik Profesional."); break;
-                case "06": content = getLayout("bg-stone-50", "text-stone-900", "bg-amber-800 text-white", "fa-bed", "Hotel, Resort & Homestay Eksklusif."); break;
-                case "07": content = getLayout("bg-slate-50", "text-slate-900", "bg-slate-800 text-white", "fa-briefcase", "Khidmat Nasihat & Professional Services."); break;
-                case "08": content = getLayout("bg-pink-50", "text-pink-900", "bg-rose-500 text-white", "fa-paw", "Kesihatan & Rawatan Haiwan Kesayangan."); break;
-                case "09": content = getLayout("bg-orange-50", "text-orange-900", "bg-orange-600 text-white", "fa-utensils", "Nikmati Hidangan Restoran & Kafe Terbaik."); break;
-                case "10": content = getLayout("bg-cyan-50", "text-cyan-900", "bg-cyan-600 text-white", "fa-broom", "Khidmat Pembersihan Kediaman & Pejabat."); break;
-                case "11": content = getLayout("bg-rose-50", "text-rose-900", "bg-rose-400 text-white", "fa-spa", "Pusat Kecantikan, Spa & Penjagaan Diri."); break;
-                case "12": content = getLayout("bg-zinc-950", "text-white", "bg-red-600 text-white", "fa-dumbbell", "Gimnasium & Pusat Kecergasan Elit."); break;
-                case "13": content = getLayout("bg-white", "text-black", "bg-zinc-900 text-white", "fa-shirt", "Butik Fesyen & Pakaian Terkini."); break;
-                case "14": content = getLayout("bg-slate-100", "text-slate-900", "bg-indigo-600 text-white", "fa-mobile-screen", "Gajet & Peranti Elektronik Terbaharu."); break;
-                case "15": content = getLayout("bg-pink-50", "text-pink-900", "bg-pink-400 text-white", "fa-rings-wedding", "Pengurusan Majlis & Perkahwinan Impian."); break;
-                case "17": content = getLayout("bg-blue-50", "text-blue-900", "bg-yellow-500 text-black", "fa-graduation-cap", "Pusat Pendidikan & Sekolah Cemerlang."); break;
-                case "18": content = getLayout("bg-slate-50", "text-slate-900", "bg-blue-600 text-white", "fa-car", "Sewa Kereta & Logistik Pengangkutan."); break;
-                case "19": content = getLayout("bg-emerald-50", "text-emerald-900", "bg-emerald-600 text-white", "fa-house-chimney", "Hartanah & Pengurusan Rumah Kediaman."); break;
-                case "20": content = getLayout("bg-white", "text-slate-900", "bg-teal-600 text-white", "fa-hand-holding-heart", "Bantuan Kebajikan & Pertubuhan NGO."); break;
-                case "21": content = getLayout("bg-indigo-50", "text-indigo-900", "bg-indigo-600 text-white", "fa-book-open", "Kursus Atas Talian & Latihan Kerjaya."); break;
-                default: content = "<html><body>Error: Template Missing</body></html>";
+                case "01": content = getLayout("bg-white", "text-black", "bg-black text-white", "fa-star", "Penyelesaian Multi-Purpose yang fleksibel."); break;
+                case "02": content = getLayout("bg-slate-900", "text-white", "bg-blue-600 text-white", "fa-cloud", "Teknologi Cloud SaaS Moden."); break;
+                case "03": content = getLayout("bg-zinc-100", "text-zinc-900", "bg-orange-600 text-white", "fa-warehouse", "Sistem Perindustrian & Kilang."); break;
+                case "05": content = getLayout("bg-blue-50", "text-blue-900", "bg-blue-600 text-white", "fa-hospital", "Pengurusan Klinik Digital."); break;
+                case "09": content = getLayout("bg-amber-50", "text-amber-950", "bg-amber-600 text-white", "fa-pizza-slice", "Pesanan Makanan Kafe & Restoran."); break;
+                case "12": content = getLayout("bg-black", "text-white", "bg-red-600 text-white", "fa-fire", "Pusat Kecergasan & Gimnasium."); break;
+                case "17": content = getLayout("bg-sky-50", "text-sky-900", "bg-yellow-500 text-black", "fa-book", "Pendidikan Sekolah & Akademi."); break;
+                default: content = getLayout("bg-white", "text-black", "bg-blue-600 text-white", "fa-check", "Ketick OS Template.");
             }
 
             const frame = document.getElementById('previewFrame');
