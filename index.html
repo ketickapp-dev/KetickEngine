@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KETICK OS - Admin Command Center</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background-color: #020617; }
+        .custom-scroll::-webkit-scrollbar { width: 5px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
+        .glass { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); }
+    </style>
+</head>
+<body class="text-white font-sans selection:bg-blue-500 overflow-hidden h-screen flex flex-col">
+
+    <nav class="border-b border-slate-800 p-4 flex justify-between items-center glass z-20">
+        <div class="flex items-center gap-3">
+            <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center shadow-lg shadow-blue-900/40">
+                <i class="fa-solid fa-cube text-sm"></i>
+            </div>
+            <div>
+                <h1 class="text-sm font-black tracking-tighter uppercase italic text-blue-500 leading-none">Ketick OS <span class="text-white">v11.0</span></h1>
+                <p class="text-[8px] text-slate-500 font-bold tracking-[0.2em] uppercase mt-1">Admin Command Center</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-4">
+            <div class="hidden md:flex flex-col text-right">
+                <span class="text-[9px] font-black text-green-400">ENGINE ONLINE</span>
+                <span class="text-[8px] text-slate-500 uppercase tracking-widest">AzlanMymo Lab</span>
+            </div>
+            <button onclick="downloadCode()" class="bg-slate-800 hover:bg-slate-700 p-2.5 rounded-xl transition-all border border-slate-700">
+                <i class="fa-solid fa-code text-xs"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div class="flex flex-1 overflow-hidden">
+        
+        <aside class="w-full md:w-96 border-r border-slate-800 flex flex-col glass overflow-y-auto custom-scroll p-6 space-y-8">
+            
+            <section>
+                <div class="flex items-center gap-2 mb-4">
+                    <i class="fa-solid fa-wand-magic-sparkles text-blue-500 text-xs"></i>
+                    <h2 class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Template Builder</h2>
+                </div>
+                
+                <div class="space-y-4">
+                    <div>
+                        <label class="text-[9px] font-black text-slate-500 mb-2 block uppercase tracking-widest ml-1">Kategori Bisnes</label>
+                        <select id="templateId" onchange="runMegaPreview()" class="w-full bg-black border border-slate-800 p-4 rounded-2xl text-blue-400 font-bold outline-none appearance-none cursor-pointer hover:border-blue-500 transition-colors">
+                            <option value="13">ID 13: BOUTIQUE (E-COMMERCE)</option>
+                            <option value="14">ID 14: GADGET STORE (E-COMMERCE)</option>
+                            <option value="05" selected>ID 05: CLINIC PRO</option>
+                            <option value="09">ID 09: RESTAURANT</option>
+                            <option value="02">ID 02: TECH SAAS</option>
+                            <option value="19">ID 19: REAL ESTATE</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="text-[9px] font-black text-slate-500 mb-2 block uppercase tracking-widest ml-1">Nama Bisnes</label>
+                        <input type="text" id="bizName" oninput="runMegaPreview()" value="Klinik Yakin Bahau" class="w-full bg-black border border-slate-800 p-4 rounded-2xl font-bold outline-none focus:border-blue-500">
+                    </div>
+
+                    <div class="bg-black/40 p-4 rounded-2xl border border-slate-800/50 space-y-3">
+                        <label class="text-[9px] font-black text-slate-500 block uppercase tracking-widest text-center">Katalog Produk / Servis</label>
+                        <div class="grid grid-cols-2 gap-2">
+                            <input type="text" id="p1_name" value="Produk A" oninput="runMegaPreview()" class="bg-slate-900/50 p-3 rounded-xl text-[10px] border border-slate-800 outline-none">
+                            <input type="text" id="p1_price" value="RM 89" oninput="runMegaPreview()" class="bg-slate-900/50 p-3 rounded-xl text-[10px] border border-slate-800 outline-none text-blue-400 font-bold">
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between items-center bg-black/40 p-3 rounded-2xl border border-slate-800/50">
+                        <span class="text-[9px] font-black text-slate-500 uppercase tracking-widest ml-2 text-center">Brand Color</span>
+                        <div class="flex gap-2">
+                            <button onclick="setTheme('#2563eb')" class="w-6 h-6 rounded-full bg-blue-600 border border-white/20"></button>
+                            <button onclick="setTheme('#e11d48')" class="w-6 h-6 rounded-full bg-rose-600 border border-white/20"></button>
+                            <button onclick="setTheme('#059669')" class="w-6 h-6 rounded-full bg-emerald-600 border border-white/20"></button>
+                            <input type="hidden" id="themeColor" value="#2563eb">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="pt-6 border-t border-slate-800">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 italic">Live Analytics</h2>
+                    <span class="px-2 py-0.5 bg-green-500/10 text-green-500 text-[7px] font-black rounded-full animate-pulse">LIVE</span>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 mb-4">
+                    <div class="bg-black/50 p-4 rounded-2xl border border-slate-800 shadow-inner">
+                        <p class="text-[7px] text-slate-500 uppercase font-black mb-1">Total Sales</p>
+                        <h4 class="text-sm font-black text-white">RM 4,280</h4>
+                    </div>
+                    <div class="bg-black/50 p-4 rounded-2xl border border-slate-800 shadow-inner">
+                        <p class="text-[7px] text-slate-500 uppercase font-black mb-1">New Leads</p>
+                        <h4 class="text-sm font-black text-white">24 Prospek</h4>
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <div class="bg-slate-800/30 p-3 rounded-xl border border-slate-800/50 flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-shopping-bag text-blue-400 text-[10px]"></i>
+                            <span class="text-[9px] font-bold">Order #8920</span>
+                        </div>
+                        <span class="text-[8px] text-slate-500 italic uppercase">2m ago</span>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="mt-auto pt-8 opacity-20 text-center">
+                <p class="text-[8px] font-black tracking-widest uppercase italic">Ketick OS Ecosystem &copy; 2026</p>
+            </footer>
+        </aside>
+
+        <main class="flex-1 bg-slate-950 p-4 md:p-10 flex items-center justify-center relative overflow-hidden">
+            <div class="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
+                <h1 class="text-[20vw] font-black italic uppercase tracking-tighter">KETICK</h1>
+            </div>
+
+            <div class="relative z-10 w-full max-w-[340px] shadow-[0_50px_100px_rgba(0,0,0,0.8)] border-[12px] border-slate-900 rounded-[3.5rem] bg-white aspect-[9/19] overflow-hidden ring-8 ring-slate-800/10">
+                <iframe id="previewFrame" class="w-full h-full border-none"></iframe>
+            </div>
+
+            <div class="absolute bottom-10 right-10 flex flex-col gap-3">
+                 <button onclick="runMegaPreview()" class="bg-blue-600 w-12 h-12 rounded-2xl shadow-xl shadow-blue-900/40 flex items-center justify-center hover:scale-110 active:scale-95 transition-all">
+                    <i class="fa-solid fa-rotate text-white"></i>
+                 </button>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function setTheme(color) { 
+            document.getElementById('themeColor').value = color; 
+            runMegaPreview();
+        }
+
+        function runMegaPreview() {
+            const id = document.getElementById('templateId').value;
+            const name = document.getElementById('bizName').value;
+            const color = document.getElementById('themeColor').value;
+            const p1 = { n: document.getElementById('p1_name').value, p: document.getElementById('p1_price').value };
+            
+            const isEcommerce = (id === "13" || id === "14");
+            const templates = {
+                "01": { icon: "fa-bolt", desc: "Multi-Purpose Solution.", bg: "bg-white", text: "text-slate-900" },
+                "02": { icon: "fa-microchip", desc: "SaaS Technology.", bg: "bg-slate-900", text: "text-white" },
+                "05": { icon: "fa-user-doctor", desc: "Clinic Professional.", bg: "bg-sky-50", text: "text-sky-900" },
+                "09": { icon: "fa-utensils", desc: "Premium Restaurant.", bg: "bg-orange-50", text: "text-orange-900" },
+                "13": { icon: "fa-shirt", desc: "Fashion Boutique.", bg: "bg-white", text: "text-black" },
+                "14": { icon: "fa-mobile-screen", desc: "Gadget Store.", bg: "bg-slate-100", text: "text-slate-900" },
+                "19": { icon: "fa-house", desc: "Real Estate.", bg: "bg-emerald-50", text: "text-emerald-900" }
+            };
+
+            const config = templates[id] || templates["01"];
+
+            const content = `
+                <html>
+                <head>
+                    <script src="https://cdn.tailwindcss.com"><\/script>
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+                    <style>@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&display=swap'); body { font-family: 'Plus Jakarta Sans', sans-serif; }</style>
+                </head>
+                <body class="${config.bg} ${config.text} m-0 p-0 min-h-screen">
+                    <nav class="p-5 flex justify-between items-center border-b border-black/5">
+                        <span class="font-black italic uppercase text-lg" style="color:${color}">${name}</span>
+                        <div class="relative"><i class="fa-solid ${isEcommerce ? 'fa-cart-shopping' : 'fa-bars-staggered'}"></i></div>
+                    </nav>
+                    <div class="p-8 text-center">
+                        <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 text-2xl text-white shadow-xl rotate-3" style="background:${color}">
+                            <i class="fa-solid ${config.icon}"></i>
+                        </div>
+                        <h1 class="text-2xl font-black uppercase italic leading-none">${name}</h1>
+                        <p class="mt-4 opacity-50 text-[9px] uppercase font-bold tracking-widest">${config.desc}</p>
+                        <div class="mt-6 bg-white/70 p-4 rounded-2xl border border-black/5 flex justify-between items-center">
+                            <p class="font-black text-xs uppercase">${p1.n}</p>
+                            <span class="font-black text-xs" style="color:${color}">${isEcommerce ? 'ADD TO CART' : p1.p}</span>
+                        </div>
+                        <button class="mt-10 w-full py-5 rounded-2xl font-black text-white text-[10px] tracking-widest uppercase shadow-xl" style="background:${color}">HANTAR SEKARANG</button>
+                    </div>
+                </body>
+                </html>`;
+
+            const frame = document.getElementById('previewFrame');
+            const blob = new Blob([content], { type: 'text/html' });
+            frame.src = URL.createObjectURL(blob);
+        }
+
+        function downloadCode() {
+            const frameContent = document.getElementById('previewFrame').src;
+            alert("Sedang mengeksport kod sumber " + document.getElementById('bizName').value + "...");
+            // Logik download boleh ditambah di sini
+        }
+
+        setTimeout(runMegaPreview, 500);
+    </script>
+</body>
+</html>
