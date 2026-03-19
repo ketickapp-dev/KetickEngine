@@ -3,77 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KETICK Engine - Ultimate Edition</title>
+    <title>KETICK OS - Ultimate Engine v8.0</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background-color: #020617; }
+        .custom-scroll::-webkit-scrollbar { width: 4px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
+    </style>
 </head>
-<body class="bg-slate-950 text-white p-4 font-sans leading-tight">
+<body class="text-white p-4 font-sans selection:bg-blue-500">
 
     <div class="max-w-xl mx-auto text-center my-6">
-        <h1 class="text-3xl font-black tracking-tighter text-blue-500 uppercase italic leading-none">Ketick OS Ultimate</h1>
-        <p class="text-slate-500 text-[10px] mt-2 tracking-[0.4em] uppercase">All-In-One SaaS Previewer</p>
+        <h1 class="text-3xl font-black tracking-tighter text-blue-500 uppercase italic">Ketick OS Ultimate</h1>
+        <p class="text-slate-500 text-[10px] mt-1 tracking-[0.4em] uppercase font-bold">The Complete SaaS Solution</p>
     </div>
 
-    <div class="max-w-md mx-auto bg-slate-900 border border-slate-800 p-6 rounded-[2.5rem] shadow-2xl mb-8">
-        <div class="space-y-4">
-            <div>
-                <label class="text-[10px] uppercase font-black text-slate-500 ml-2 mb-2 block tracking-widest">Pilih Kategori Bisnes</label>
-                <select id="templateId" class="w-full bg-black border border-slate-700 p-4 rounded-2xl text-blue-400 font-black outline-none appearance-none cursor-pointer">
-                    <option value="05">ID 05: CLINIC PRO</option>
-                    <option value="01">ID 01: MULTI-PURPOSE</option>
-                    <option value="09">ID 09: RESTAURANT</option>
-                    <option value="12">ID 12: FITNESS GYM</option>
-                    <option value="03">ID 03: INDUSTRIAL</option>
-                    <option value="17">ID 17: SCHOOL</option>
-                </select>
+    <div class="max-w-md mx-auto bg-slate-900/50 border border-slate-800 p-6 rounded-[2.5rem] shadow-2xl mb-8 backdrop-blur-xl">
+        <div class="space-y-5">
+            
+            <div class="grid grid-cols-1 gap-4">
+                <div>
+                    <label class="text-[9px] uppercase font-black text-slate-500 mb-2 block tracking-widest ml-2">Pilih Template (ID 01-21)</label>
+                    <select id="templateId" class="w-full bg-black border border-slate-800 p-4 rounded-2xl text-blue-400 font-bold outline-none appearance-none">
+                        <option value="05">ID 05: CLINIC PRO</option>
+                        <option value="09">ID 09: RESTAURANT</option>
+                        <option value="12">ID 12: FITNESS GYM</option>
+                        <option value="01">ID 01: MULTI-PURPOSE</option>
+                        <option value="02">ID 02: TECH SAAS</option>
+                        <option value="03">ID 03: INDUSTRIAL</option>
+                        <option value="04">ID 04: PORTFOLIO</option>
+                        <option value="11">ID 11: BEAUTY & SPA</option>
+                        <option value="17">ID 17: SCHOOL</option>
+                        <option value="19">ID 19: REAL ESTATE</option>
+                    </select>
+                </div>
+                <input type="text" id="bizName" value="Klinik Yakin Bahau" placeholder="Nama Bisnes" class="w-full bg-black border border-slate-800 p-4 rounded-2xl text-center font-bold outline-none focus:border-blue-500 transition-all">
             </div>
 
-            <div class="grid grid-cols-1 gap-3">
-                <input type="text" id="bizName" value="Klinik Yakin Bahau" placeholder="Nama Bisnes" class="w-full bg-black border border-slate-700 p-4 rounded-2xl text-center font-bold outline-none focus:border-blue-500 transition-all">
-                <input type="text" id="bizService" value="Pakar Kesihatan Am" placeholder="Servis Utama" class="w-full bg-black border border-slate-700 p-4 rounded-2xl text-center text-sm outline-none focus:border-blue-500 transition-all text-slate-400">
-            </div>
-
-            <div>
-                <label class="text-[10px] uppercase font-black text-slate-500 ml-2 mb-2 block tracking-widest text-center">Warna Tema Website</label>
-                <div class="flex justify-center gap-3 bg-black/40 p-3 rounded-2xl">
-                    <button onclick="setTheme('#2563eb')" class="w-8 h-8 rounded-full bg-blue-600 border-2 border-white focus:scale-125 transition-all"></button>
-                    <button onclick="setTheme('#e11d48')" class="w-8 h-8 rounded-full bg-rose-600 border-2 border-white focus:scale-125 transition-all"></button>
-                    <button onclick="setTheme('#059669')" class="w-8 h-8 rounded-full bg-emerald-600 border-2 border-white focus:scale-125 transition-all"></button>
-                    <button onclick="setTheme('#d97706')" class="w-8 h-8 rounded-full bg-amber-600 border-2 border-white focus:scale-125 transition-all"></button>
-                    <button onclick="setTheme('#000000')" class="w-8 h-8 rounded-full bg-black border-2 border-white focus:scale-125 transition-all"></button>
-                    <input type="hidden" id="themeColor" value="#2563eb">
+            <div class="bg-black/40 p-4 rounded-2xl border border-slate-800/50">
+                <label class="text-[9px] uppercase font-black text-slate-500 mb-3 block tracking-widest text-center">Konfigurasi Katalog Harga</label>
+                <div class="grid grid-cols-2 gap-2 mb-2">
+                    <input type="text" id="p1_name" value="Rawatan Am" class="bg-slate-900/50 p-3 rounded-xl text-[10px] border border-slate-800 outline-none">
+                    <input type="text" id="p1_price" value="RM 35" class="bg-slate-900/50 p-3 rounded-xl text-[10px] border border-slate-800 outline-none text-blue-400 font-bold">
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <input type="text" id="p2_name" value="Check-up Pakar" class="bg-slate-900/50 p-3 rounded-xl text-[10px] border border-slate-800 outline-none">
+                    <input type="text" id="p2_price" value="RM 80" class="bg-slate-900/50 p-3 rounded-xl text-[10px] border border-slate-800 outline-none text-blue-400 font-bold">
                 </div>
             </div>
 
-            <button onclick="runMegaPreview()" class="w-full bg-gradient-to-r from-blue-700 to-blue-500 hover:from-blue-600 hover:to-blue-400 py-5 rounded-2xl font-black uppercase italic tracking-widest shadow-lg shadow-blue-900/40 active:scale-95 transition-all">
-                GENERATE LIVE PREVIEW
+            <div class="flex justify-center gap-3 bg-black/40 p-3 rounded-2xl border border-slate-800/50">
+                <button onclick="setTheme('#2563eb')" class="w-8 h-8 rounded-full bg-blue-600 border-2 border-white focus:ring-2 ring-blue-500 transition-all"></button>
+                <button onclick="setTheme('#e11d48')" class="w-8 h-8 rounded-full bg-rose-600 border-2 border-white focus:ring-2 ring-rose-500 transition-all"></button>
+                <button onclick="setTheme('#059669')" class="w-8 h-8 rounded-full bg-emerald-600 border-2 border-white focus:ring-2 ring-emerald-500 transition-all"></button>
+                <button onclick="setTheme('#d97706')" class="w-8 h-8 rounded-full bg-amber-600 border-2 border-white focus:ring-2 ring-amber-500 transition-all"></button>
+                <button onclick="setTheme('#000000')" class="w-8 h-8 rounded-full bg-black border-2 border-white focus:ring-2 ring-slate-500 transition-all"></button>
+                <input type="hidden" id="themeColor" value="#2563eb">
+            </div>
+
+            <button onclick="runMegaPreview()" class="w-full bg-gradient-to-r from-blue-700 to-blue-500 py-5 rounded-3xl font-black uppercase italic tracking-[0.2em] shadow-xl shadow-blue-900/20 active:scale-95 transition-all text-xs">
+                Build & Preview
             </button>
         </div>
     </div>
 
-    <div class="max-w-[360px] mx-auto border-[12px] border-slate-900 rounded-[3.5rem] shadow-[0_0_60px_rgba(0,0,0,0.6)] bg-white aspect-[9/19] overflow-hidden relative ring-4 ring-slate-800/30">
-        <iframe id="previewFrame" class="w-full h-full border-none bg-white"></iframe>
+    <div class="max-w-[360px] mx-auto border-[12px] border-slate-900 rounded-[3.5rem] shadow-[0_40px_100px_rgba(0,0,0,0.8)] bg-white aspect-[9/19] overflow-hidden relative ring-4 ring-slate-800/20">
+        <iframe id="previewFrame" class="w-full h-full border-none"></iframe>
     </div>
 
     <script>
-        function setTheme(color) { 
-            document.getElementById('themeColor').value = color; 
-        }
+        function setTheme(color) { document.getElementById('themeColor').value = color; }
 
         function runMegaPreview() {
             const id = document.getElementById('templateId').value;
             const name = document.getElementById('bizName').value;
-            const service = document.getElementById('bizService').value;
             const color = document.getElementById('themeColor').value;
-            const loc = "Negeri Sembilan, Malaysia";
+            const p1 = { n: document.getElementById('p1_name').value, p: document.getElementById('p1_price').value };
+            const p2 = { n: document.getElementById('p2_name').value, p: document.getElementById('p2_price').value };
 
-            // Ikon mengikut kategori
-            let icon = "fa-star";
-            if(id === "05") icon = "fa-user-doctor";
-            if(id === "09") icon = "fa-utensils";
-            if(id === "12") icon = "fa-dumbbell";
-            if(id === "03") icon = "fa-industry";
-            if(id === "17") icon = "fa-graduation-cap";
+            // Data Template
+            const templates = {
+                "01": { icon: "fa-bolt", desc: "Penyelesaian Perniagaan Multi-Purpose.", bg: "bg-white", text: "text-slate-900" },
+                "02": { icon: "fa-microchip", desc: "Teknologi SaaS & Cloud masa hadapan.", bg: "bg-slate-900", text: "text-white" },
+                "03": { icon: "fa-industry", desc: "Pusat Pengeluaran & Kilang Perindustrian.", bg: "bg-zinc-100", text: "text-zinc-900" },
+                "04": { icon: "fa-palette", desc: "Portfolio Kreatif & Personal Branding.", bg: "bg-neutral-50", text: "text-neutral-900" },
+                "05": { icon: "fa-user-doctor", desc: "Penjagaan Kesihatan Klinik Profesional.", bg: "bg-sky-50", text: "text-sky-900" },
+                "09": { icon: "fa-utensils", desc: "Nikmati Hidangan Restoran & Kafe Terbaik.", bg: "bg-orange-50", text: "text-orange-900" },
+                "11": { icon: "fa-spa", desc: "Pusat Kecantikan & Penjagaan Diri.", bg: "bg-rose-50", text: "text-rose-900" },
+                "12": { icon: "fa-dumbbell", desc: "Gimnasium & Pusat Kecergasan Elit.", bg: "bg-zinc-950", text: "text-white" },
+                "17": { icon: "fa-graduation-cap", desc: "Pusat Pendidikan & Sekolah Cemerlang.", bg: "bg-blue-50", text: "text-blue-900" },
+                "19": { icon: "fa-house-chimney", desc: "Hartanah & Pengurusan Rumah Kediaman.", bg: "bg-emerald-50", text: "text-emerald-900" }
+            };
+
+            const config = templates[id] || templates["01"];
 
             const content = `
                 <html>
@@ -82,42 +105,50 @@
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
                     <style>@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap'); body { font-family: 'Plus Jakarta Sans', sans-serif; }</style>
                 </head>
-                <body class="bg-white text-slate-900 m-0 p-0 min-h-screen relative overflow-x-hidden">
-                    <nav class="p-5 flex justify-between items-center bg-white/80 backdrop-blur-md sticky top-0 border-b border-slate-100 z-10">
-                        <span class="font-black italic uppercase tracking-tighter text-xl" style="color:${color}">${name}</span>
-                        <div class="w-10 h-10 bg-slate-50 rounded-xl flex items-center justify-center text-slate-400"><i class="fa-solid fa-bars-staggered"></i></div>
+                <body class="${config.bg} ${config.text} m-0 p-0 min-h-screen relative overflow-x-hidden">
+                    
+                    <nav class="p-5 flex justify-between items-center bg-white/10 backdrop-blur-md sticky top-0 border-b border-black/5 z-10">
+                        <span class="font-black italic uppercase tracking-tighter text-lg" style="color:${color}">${name}</span>
+                        <i class="fa-solid fa-bars-staggered opacity-50"></i>
                     </nav>
 
-                    <div class="p-10 text-center">
-                        <div class="w-20 h-20 rounded-[2.5rem] flex items-center justify-center mx-auto mb-8 text-3xl text-white shadow-2xl rotate-3 transition-transform hover:rotate-0" style="background:${color}">
-                            <i class="fa-solid ${icon}"></i>
+                    <div class="p-8 text-center">
+                        <div class="w-20 h-20 rounded-[2.5rem] flex items-center justify-center mx-auto mb-8 text-3xl text-white shadow-2xl rotate-3" style="background:${color}">
+                            <i class="fa-solid ${config.icon}"></i>
                         </div>
-                        <h1 class="text-4xl font-extrabold uppercase tracking-tighter italic leading-[0.9] text-slate-900">${name}</h1>
-                        <div class="mt-6 inline-block px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.2em] text-white shadow-lg" style="background:${color}">
-                            ${service}
-                        </div>
-                        <p class="mt-8 text-slate-400 text-sm leading-relaxed px-2 font-medium">Beroperasi dengan standard profesional di <span class="text-slate-900 font-bold">${loc}</span>.</p>
+                        <h1 class="text-3xl font-black uppercase tracking-tighter italic leading-none">${name}</h1>
+                        <p class="mt-4 opacity-60 text-[11px] leading-relaxed px-4 font-medium">${config.desc}</p>
                         
-                        <button onclick="openBooking()" class="mt-12 w-full py-5 rounded-3xl font-black text-white shadow-2xl active:scale-95 transition-all text-xs tracking-widest uppercase" style="background:${color}; shadow-color:${color}44">
+                        <div class="mt-8 space-y-3">
+                            <div class="bg-white/50 backdrop-blur-sm p-5 rounded-[2rem] border border-black/5 flex justify-between items-center shadow-sm">
+                                <div class="text-left"><p class="text-[9px] opacity-50 font-bold uppercase">Service A</p><p class="font-black uppercase text-sm">${p1.n}</p></div>
+                                <div class="font-black text-lg" style="color:${color}">${p1.p}</div>
+                            </div>
+                            <div class="bg-white/50 backdrop-blur-sm p-5 rounded-[2rem] border border-black/5 flex justify-between items-center shadow-sm">
+                                <div class="text-left"><p class="text-[9px] opacity-50 font-bold uppercase">Service B</p><p class="font-black uppercase text-sm">${p2.n}</p></div>
+                                <div class="font-black text-lg" style="color:${color}">${p2.p}</div>
+                            </div>
+                        </div>
+
+                        <button onclick="openBooking()" class="mt-10 w-full py-5 rounded-[2rem] font-black text-white shadow-2xl active:scale-95 transition-all text-[10px] tracking-widest uppercase" style="background:${color}">
                             TEMPAH SEKARANG
                         </button>
                     </div>
 
                     <div id="bookingSheet" class="fixed inset-0 bg-black/60 z-50 transition-opacity duration-300 opacity-0 pointer-events-none">
-                        <div class="absolute bottom-0 left-0 right-0 bg-white rounded-t-[3rem] p-10 transform translate-y-full transition-transform duration-500 shadow-[0_-20px_80px_rgba(0,0,0,0.3)]">
-                            <div class="w-16 h-1.5 bg-slate-200 rounded-full mx-auto mb-8"></div>
-                            <h2 class="text-2xl font-black uppercase italic mb-8 text-center" style="color:${color}">Slot Tempahan</h2>
-                            <div class="space-y-4">
-                                <input type="text" placeholder="Nama Anda" class="w-full bg-slate-50 border-none p-5 rounded-2xl outline-none ring-2 ring-transparent focus:ring-slate-100 transition-all">
-                                <input type="tel" placeholder="No. WhatsApp" class="w-full bg-slate-50 border-none p-5 rounded-2xl outline-none ring-2 ring-transparent focus:ring-slate-100 transition-all">
-                                <button onclick="closeBooking()" class="w-full py-5 rounded-2xl font-black text-white uppercase tracking-widest text-xs mt-4 shadow-xl" style="background:${color}">SAHKAN TEMPAHAN</button>
-                                <button onclick="toggleBooking(false)" class="w-full py-2 text-slate-400 text-[10px] font-bold uppercase tracking-widest mt-2">Batal</button>
+                        <div class="absolute bottom-0 left-0 right-0 bg-white rounded-t-[3rem] p-10 transform translate-y-full transition-transform duration-500 shadow-2xl">
+                            <div class="w-12 h-1.5 bg-slate-200 rounded-full mx-auto mb-8"></div>
+                            <h2 class="text-xl font-black uppercase italic mb-6 text-slate-900">Maklumat Tempahan</h2>
+                            <div class="space-y-3 text-slate-900">
+                                <input type="text" placeholder="Nama Penuh" class="w-full bg-slate-100 p-4 rounded-2xl outline-none">
+                                <input type="tel" placeholder="No. WhatsApp" class="w-full bg-slate-100 p-4 rounded-2xl outline-none">
+                                <button onclick="closeBooking()" class="w-full py-4 rounded-2xl font-black text-white uppercase tracking-widest text-[10px] mt-4" style="background:${color}">HANTAR SEKARANG</button>
                             </div>
                         </div>
                     </div>
 
-                    <div style="position:fixed; bottom:25px; right:25px; z-index:40;">
-                        <a href="#" style="background:#25D366; width:65px; height:65px; border-radius:24px; display:flex; align-items:center; justify-content:center; color:white; font-size:32px; box-shadow:0 15px 35px rgba(37,211,102,0.4); text-decoration:none;" class="rotate-3 active:scale-90 transition-all">
+                    <div style="position:fixed; bottom:20px; right:20px; z-index:40;">
+                        <a href="#" style="background:#25D366; width:60px; height:60px; border-radius:22px; display:flex; align-items:center; justify-content:center; color:white; font-size:28px; box-shadow:0 10px 25px rgba(37,211,102,0.3); text-decoration:none;">
                             <i class="fa-brands fa-whatsapp"></i>
                         </a>
                     </div>
@@ -129,16 +160,11 @@
                             sheet.classList.add('opacity-100');
                             sheet.children[0].classList.remove('translate-y-full');
                         }
-                        function toggleBooking(show) {
-                            const sheet = document.getElementById('bookingSheet');
-                            if(!show) {
-                                sheet.classList.add('opacity-0', 'pointer-events-none');
-                                sheet.children[0].classList.add('translate-y-full');
-                            }
-                        }
                         function closeBooking() {
-                            alert("Terima kasih! Pihak ${name} akan WhatsApp anda untuk pengesahan slot.");
-                            toggleBooking(false);
+                            alert("Tempahan berjaya dihantar ke ${name}!");
+                            const sheet = document.getElementById('bookingSheet');
+                            sheet.classList.add('opacity-0', 'pointer-events-none');
+                            sheet.children[0].classList.add('translate-y-full');
                         }
                     <\/script>
                 </body>
@@ -148,8 +174,6 @@
             const blob = new Blob([content], { type: 'text/html' });
             frame.src = URL.createObjectURL(blob);
         }
-
-        // Auto-run pada permulaan
         setTimeout(runMegaPreview, 500);
     </script>
 </body>
